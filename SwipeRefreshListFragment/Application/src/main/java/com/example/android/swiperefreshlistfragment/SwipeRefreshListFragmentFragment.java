@@ -17,6 +17,7 @@
 package com.example.android.swiperefreshlistfragment;
 
 import com.example.android.common.dummydata.Cheeses;
+import com.example.android.common.dummydata.Cards;
 import com.example.android.common.logger.Log;
 
 import android.os.AsyncTask;
@@ -73,7 +74,9 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
-                Cheeses.randomList(LIST_ITEM_COUNT));
+                //Cheeses.randomList(LIST_ITEM_COUNT)
+                Cards.dealHand(LIST_ITEM_COUNT)
+        );
 
         // Set the adapter between the ListView and its backing data.
         setListAdapter(adapter);
@@ -215,8 +218,11 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
                 e.printStackTrace();
             }
 
-            // Return a new random list of cheeses
-            return Cheeses.randomList(LIST_ITEM_COUNT);
+            // --------------------Return a new random list of cheeses
+            //return Cheeses.randomList(LIST_ITEM_COUNT);
+
+            // Deal a hand of cards
+            return Cards.dealHand(LIST_ITEM_COUNT);
         }
 
         @Override
