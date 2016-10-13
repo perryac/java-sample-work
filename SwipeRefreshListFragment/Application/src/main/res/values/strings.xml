@@ -19,9 +19,12 @@
 
     <string name="menu_refresh">Refresh</string>
 
-    <string name="menu_color_scheme">Color scheme</string>
+    <string name="menu_color_scheme">Color</string>
     <string name="menu_color_scheme_1">Scheme #1</string>
     <string name="menu_color_scheme_2">Scheme #2</string>
     <string name="menu_color_scheme_3">Scheme #3</string>
+    <string name="menu_type">Type</string>
+    <string name="menu_type_1">"Cheeses"</string>
+    <string name="menu_type_2">"Cards"</string>
 
 </resources>

@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.ViewAnimator;
 
 import com.example.android.common.activities.SampleActivityBase;
+import com.example.android.common.dummydata.RandomStuff;
 import com.example.android.common.logger.Log;
 import com.example.android.common.logger.LogFragment;
 import com.example.android.common.logger.LogWrapper;
@@ -43,6 +44,8 @@ public class MainActivity extends SampleActivityBase {
     // Whether the Log Fragment is currently shown
     private boolean mLogShown;
 
+    private SwipeRefreshListFragmentFragment mFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +53,8 @@ public class MainActivity extends SampleActivityBase {
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            SwipeRefreshListFragmentFragment fragment = new SwipeRefreshListFragmentFragment();
-            transaction.replace(R.id.sample_content_fragment, fragment);
+            mFragment = new SwipeRefreshListFragmentFragment();
+            transaction.replace(R.id.sample_content_fragment, mFragment);
             transaction.commit();
         }
     }
@@ -67,6 +70,16 @@ public class MainActivity extends SampleActivityBase {
         MenuItem logToggle = menu.findItem(R.id.menu_toggle_log);
         logToggle.setVisible(findViewById(R.id.sample_output) instanceof ViewAnimator);
         logToggle.setTitle(mLogShown ? R.string.sample_hide_log : R.string.sample_show_log);
+        logToggle.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+
+        // Force my new menu onto ActionBar
+        MenuItem typeMenu = menu.findItem(R.id.menu_type);
+        typeMenu.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        // set up FragFrag menu
+        if (mFragment != null) {
+            mFragment.prepMenus(menu);
+        }
 
         return super.onPrepareOptionsMenu(menu);
     }

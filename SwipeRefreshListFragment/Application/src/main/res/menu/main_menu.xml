@@ -15,7 +15,8 @@
  limitations under the License.
 -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         A color scheme menu item used for demonstrating the use of SwipeRefreshLayout's color
@@ -24,23 +25,41 @@
         off of your application's branding.
     -->
     <item
+        android:title="@string/menu_type"
+        android:id="@+id/menu_type"
+        app:showAsAction="always" >
+        <menu >
+            <group >
+                <item android:title="@string/menu_type_1"
+                    android:id="@+id/menu_type_1"
+                    android:checkable="true" />
+                <item android:title="@string/menu_type_2"
+                    android:id="@+id/menu_type_2"
+                    android:checkable="true" />
+            </group>
+        </menu>
+    </item>
+    <item
           android:id="@+id/menu_color_scheme"
           android:title="@string/menu_color_scheme"
-          android:showAsAction="ifRoom">
+        android:showAsAction="ifRoom">
         <menu>
             <group android:checkableBehavior="single">
 
                 <item
                       android:id="@+id/menu_color_scheme_1"
-                      android:title="@string/menu_color_scheme_1" />
+                      android:title="@string/menu_color_scheme_1"
+                    android:checkable="true" />
 
                 <item
                       android:id="@+id/menu_color_scheme_2"
-                      android:title="@string/menu_color_scheme_2" />
+                      android:title="@string/menu_color_scheme_2"
+                    android:checkable="true" />
 
                 <item
                       android:id="@+id/menu_color_scheme_3"
-                      android:title="@string/menu_color_scheme_3" />
+                      android:title="@string/menu_color_scheme_3"
+                    android:checkable="true" />
 
             </group>
         </menu>

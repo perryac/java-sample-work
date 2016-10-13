@@ -16,8 +16,7 @@
 
 package com.example.android.swiperefreshlistfragment;
 
-import com.example.android.common.dummydata.Cheeses;
-import com.example.android.common.dummydata.Cards;
+import com.example.android.common.dummydata.RandomStuff;
 import com.example.android.common.logger.Log;
 
 import android.os.AsyncTask;
@@ -53,6 +52,13 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
 
     private static final int LIST_ITEM_COUNT = 20;
 
+    private RandomStuff.ListType mType = RandomStuff.ListType.CHEESES;
+    private MenuItem miScheme1;
+    private MenuItem miScheme2;
+    private MenuItem miScheme3;
+    private MenuItem miCheeses;
+    private MenuItem miCards;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +80,9 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
-                //Cheeses.randomList(LIST_ITEM_COUNT)
-                Cards.dealHand(LIST_ITEM_COUNT)
+                // ---------- Cheeses.randomList(LIST_ITEM_COUNT)
+                // ---------- Cards.dealHand(LIST_ITEM_COUNT)
+                RandomStuff.randomList(mType, LIST_ITEM_COUNT)
         );
 
         // Set the adapter between the ListView and its backing data.
@@ -107,6 +114,16 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
         inflater.inflate(R.menu.main_menu, menu);
     }
 
+    public void prepMenus(Menu menu) {
+        miScheme1 = menu.findItem(R.id.menu_color_scheme_1);
+        miScheme2 = menu.findItem(R.id.menu_color_scheme_2);
+        miScheme3 = menu.findItem(R.id.menu_color_scheme_3);
+        miCheeses = menu.findItem(R.id.menu_type_1);
+        miCheeses.setChecked(mType == RandomStuff.ListType.CHEESES);
+        miCards = menu.findItem(R.id.menu_type_2);
+        miCards.setChecked(mType == RandomStuff.ListType.CARDS);
+    }
+
     // BEGIN_INCLUDE (setup_refresh_menu_listener)
     /**
      * Respond to the user's selection of the Refresh action item. Start the SwipeRefreshLayout
@@ -134,7 +151,9 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
 
             case R.id.menu_color_scheme_1:
                 Log.i(LOG_TAG, "setColorScheme #1");
-                item.setChecked(true);
+                miScheme1.setChecked(true);
+                miScheme2.setChecked(false);
+                miScheme3.setChecked(false);
 
                 // Change the colors displayed by the SwipeRefreshLayout by providing it with 4
                 // color resource ids
@@ -144,7 +163,9 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
 
             case R.id.menu_color_scheme_2:
                 Log.i(LOG_TAG, "setColorScheme #2");
-                item.setChecked(true);
+                miScheme1.setChecked(false);
+                miScheme2.setChecked(true);
+                miScheme3.setChecked(false);
 
                 // Change the colors displayed by the SwipeRefreshLayout by providing it with 4
                 // color resource ids
@@ -154,12 +175,30 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
 
             case R.id.menu_color_scheme_3:
                 Log.i(LOG_TAG, "setColorScheme #3");
-                item.setChecked(true);
+                miScheme1.setChecked(false);
+                miScheme2.setChecked(false);
+                miScheme3.setChecked(true);
 
                 // Change the colors displayed by the SwipeRefreshLayout by providing it with 4
                 // color resource ids
                 setColorScheme(R.color.color_scheme_3_1, R.color.color_scheme_3_2,
                         R.color.color_scheme_3_3, R.color.color_scheme_3_4);
+                return true;
+
+            case R.id.menu_type_1:
+                Log.i(LOG_TAG, "setListType CHEESES");
+
+                mType = RandomStuff.ListType.CHEESES;
+                miCheeses.setChecked(true);
+                miCards.setChecked(false);
+                return true;
+
+            case R.id.menu_type_2:
+                Log.i(LOG_TAG, "setListType CARDS");
+
+                mType = RandomStuff.ListType.CARDS;
+                miCheeses.setChecked(false);
+                miCards.setChecked(true);
                 return true;
         }
 
@@ -193,8 +232,8 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
         // Remove all items from the ListAdapter, and then replace them with the new items
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) getListAdapter();
         adapter.clear();
-        for (String cheese : result) {
-            adapter.add(cheese);
+        for (String item : result) {
+            adapter.add(item);
         }
 
         // Stop the refreshing indicator
@@ -203,7 +242,7 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
     // END_INCLUDE (refresh_complete)
 
     /**
-     * Dummy {@link AsyncTask} which simulates a long running task to fetch new cheeses.
+     * Dummy {@link AsyncTask} which simulates a long running task to fetch new items.
      */
     private class DummyBackgroundTask extends AsyncTask<Void, Void, List<String>> {
 
@@ -221,8 +260,10 @@ public class SwipeRefreshListFragmentFragment extends SwipeRefreshListFragment {
             // --------------------Return a new random list of cheeses
             //return Cheeses.randomList(LIST_ITEM_COUNT);
 
-            // Deal a hand of cards
-            return Cards.dealHand(LIST_ITEM_COUNT);
+            // --------------------Deal a hand of cards
+            // return Cards.dealHand(LIST_ITEM_COUNT);
+
+            return RandomStuff.randomList(mType, LIST_ITEM_COUNT);
         }
 
         @Override

@@ -5,10 +5,11 @@ package com.example.android.common.dummydata;
  */
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
 
-
+/** Dummy data using a deck of cards
+ *
+ */
 public class Cards {
     static final String[] Ranks = {
             "Deuce",
