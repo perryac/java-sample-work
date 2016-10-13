@@ -1,3 +1,9 @@
+SwipeRefreshListFragment/.idea/*
+.idea/*
+.gitignore
+libraries/
+.idea/
+
 # Built application files
 *.apk
 *.ap_
