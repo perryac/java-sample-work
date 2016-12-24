@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.slidingtabscolors;
+package com.example.android.habmath;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

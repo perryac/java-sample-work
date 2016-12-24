@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.android.slidingtabscolors;
+package com.example.android.habmath;
 
+import com.example.android.common.logger.Log;
 import com.example.android.common.view.SlidingTabLayout;
 
 import android.graphics.Color;
@@ -178,7 +179,9 @@ public class SlidingTabsColorsFragment extends Fragment {
 
             @Override
             public int getIndicatorColor(int position) {
-                return mTabs.get(position).getIndicatorColor();
+                int c = mTabs.get(position).getIndicatorColor();
+                Log.i(LOG_TAG, String.format("getIndicatorColor(%d) = %X", position, c));
+                return c;
             }
 
             @Override

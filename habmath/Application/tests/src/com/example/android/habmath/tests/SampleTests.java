@@ -31,9 +31,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.example.android.slidingtabscolors.tests;
+package com.example.android.habmath.tests;
 
-import com.example.android.slidingtabscolors.*;
+import com.example.android.habmath.*;
 
 import android.test.ActivityInstrumentationTestCase2;
 
