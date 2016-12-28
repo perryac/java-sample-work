@@ -16,11 +16,12 @@
 -->
 
 <resources>
-    <string name="app_name">SlidingTabsColors</string>
+    <string name="app_name">habmath</string>
     <string name="intro_message">
         <![CDATA[
         
             
+            Originally based on:
             A more advanced sample which shows how to use SlidingTabLayout to display a custom
             ViewPager title strip, with custom coloring for each tab.
             
