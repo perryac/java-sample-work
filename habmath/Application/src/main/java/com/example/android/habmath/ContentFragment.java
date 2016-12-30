@@ -37,6 +37,8 @@ public class ContentFragment extends Fragment {
     private static final String KEY_INDICATOR_COLOR = "indicator_color";
     private static final String KEY_DIVIDER_COLOR = "divider_color";
     private static final String KEY_RADIUS_FACTOR = "radius_factor";
+    private static final String KEY_EFFECTIVE_G = "effective_g";
+    private static final String KEY_RPM = "rpm";
 
     /**
      * @return a new instance of {@link ContentFragment}, adding the parameters into a bundle and
@@ -49,6 +51,8 @@ public class ContentFragment extends Fragment {
         bundle.putInt(KEY_INDICATOR_COLOR, indicatorColor);
         bundle.putInt(KEY_DIVIDER_COLOR, dividerColor);
         bundle.putInt(KEY_RADIUS_FACTOR, 100);
+        bundle.putDouble(KEY_EFFECTIVE_G, 1.0);
+        bundle.putDouble(KEY_RPM, 0.0);
 
         ContentFragment fragment = new ContentFragment();
         fragment.setArguments(bundle);
@@ -71,7 +75,9 @@ public class ContentFragment extends Fragment {
         if (args != null) {
             TextView radiusText = (TextView) view.findViewById(R.id.radiusText);
             SeekBar slider = (SeekBar) view.findViewById(R.id.seekBar);
+            TextView efgText = (TextView) view.findViewById(R.id.efgText);
             int radius = args.getInt(KEY_RADIUS_FACTOR);
+
             slider.setProgress(radius / 100);
             radiusText.setText(String.valueOf(radius));
             // perform seek bar change listener event used for getting the progress value
@@ -99,9 +105,17 @@ public class ContentFragment extends Fragment {
                     rt.setText(String.valueOf(progressChangedValue * 100));
                     Bundle a = getArguments();
                     a.putInt(KEY_RADIUS_FACTOR, progressChangedValue * 100);
+
+                    // Calculate
+                    calcRPM(v, a);
                 }
             });
 
+            efgText.setText(String.valueOf(1.0));
+
+            slider.setBackgroundColor(args.getInt(KEY_INDICATOR_COLOR));
+
+            /*
             TextView title = (TextView) view.findViewById(R.id.item_title);
             title.setText("Title: " + args.getCharSequence(KEY_TITLE));
 
@@ -114,6 +128,23 @@ public class ContentFragment extends Fragment {
             TextView dividerColorView = (TextView) view.findViewById(R.id.item_divider_color);
             dividerColorView.setText("Divider: #" + Integer.toHexString(dividerColor));
             dividerColorView.setTextColor(dividerColor);
+            */
         }
+    }
+
+    private void calcRPM(View v, Bundle a) {
+        TextView rpmText = (TextView) v.findViewById(R.id.rpmText);
+        int radius = a.getInt(KEY_RADIUS_FACTOR); // m
+        double efg = a.getDouble(KEY_EFFECTIVE_G) * 9.807; // m/s^2
+        double rads = Math.sqrt(efg / radius); // rads/s
+        double rpm = 0;
+
+        Log.i("CALCULATION", String.format("Radians per sec is %f", rads));
+        // 360 degrees = 2 pi radians = 1 revolution
+        rpm = (rads * 60.0) / (2.0 * Math.PI);
+        a.putDouble(KEY_RPM, rpm);
+        rpmText.setText(String.format("%.4f", rpm));
+
+        Log.i("CALCULATION", String.format("RPM is %f", rpm));
     }
 }
