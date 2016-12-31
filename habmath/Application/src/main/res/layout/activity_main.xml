@@ -15,7 +15,8 @@
   -->
 <LinearLayout
       xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:id="@+id/sample_main_layout">
@@ -23,8 +24,8 @@
     <ViewAnimator
           android:id="@+id/sample_output"
           android:layout_width="match_parent"
-          android:layout_height="0px"
-          android:layout_weight="1">
+          android:layout_height="60dp"
+          android:layout_weight="0">
 
         <ScrollView
               style="@style/Widget.SampleMessageTile"
@@ -34,7 +35,7 @@
             <TextView
                   style="@style/Widget.SampleMessage"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="match_parent"
                   android:paddingLeft="@dimen/horizontal_page_margin"
                   android:paddingRight="@dimen/horizontal_page_margin"
                   android:paddingTop="@dimen/vertical_page_margin"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="tab_stream">Stream</string>
-    <string name="tab_messages">Messages</string>
-    <string name="tab_notifications">Notifications</string>
-    <string name="tab_photos">Photos</string>
+    <string name="tab_stream">Spin RPM</string>
+    <string name="tab_messages">TBD 1</string>
+    <string name="tab_notifications">TBD 2</string>
+    <string name="tab_photos">TBD 3</string>
 
 </resources>

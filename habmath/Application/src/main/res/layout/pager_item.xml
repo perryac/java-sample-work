@@ -1,95 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="top"
         android:background="#dddddd">
 
-    <Space
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:id="@+id/spacer1"
-        android:layout_column="0"
-        android:layout_row="0"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_gravity="top">
 
-    <SeekBar
-        android:id="@+id/seekBar"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_column="1"
-        android:layout_row="0"
+        <Space
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:id="@+id/spacer1"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_marginTop="@dimen/margin_small"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:max="50"
+            android:progress="1"
+            android:focusable="true"
+            android:background="#FF0000"
+            android:layout_margin="@dimen/margin_tiny"
+            android:padding="@dimen/margin_small" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="240dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:max="50"
-        android:progress="1"
-        android:focusable="true"
-        android:layout_marginTop="16dp"
-        android:background="#FF0000"/>
+        android:layout_gravity="top">
 
-    <Button
-        android:id="@+id/radiusLabel"
-        android:text="Radius"
-        android:layout_width="120dp"
+        <Button
+            android:id="@+id/radiusLabel"
+            android:text="Radius"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:padding="@dimen/margin_tiny"
+            android:layout_marginTop="@dimen/margin_small" />
+
+        <EditText
+            android:id="@+id/radiusText"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="@dimen/margin_tiny"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="1"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_gravity="top">
 
-    <EditText
-        android:id="@+id/radiusText"
-        android:layout_width="240dp"
+        <Button
+            android:id="@+id/efgLabel"
+            android:text="Effective g"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:padding="@dimen/margin_tiny"
+            android:layout_marginTop="@dimen/margin_small" />
+
+        <EditText
+            android:id="@+id/efgText"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/margin_tiny"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_column="1"
+            android:layout_row="2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:inputType="number"
-        android:padding="4dp"
-        android:layout_column="1"
-        android:layout_row="1" />
+        android:layout_gravity="top">
 
-    <Button
-        android:id="@+id/efgLabel"
-        android:text="Effective g"
-        android:layout_width="120dp"
+        <Button
+            android:id="@+id/rpmLabel"
+            android:text="RPM"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:padding="@dimen/margin_tiny"
+            android:layout_marginTop="@dimen/margin_small" />
+
+        <EditText
+            android:id="@+id/rpmText"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="@dimen/margin_tiny"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="2"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_gravity="top">
 
-    <EditText
-        android:id="@+id/efgText"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:inputType="number"
-        android:padding="4dp"
-        android:layout_column="1"
-        android:layout_row="2" />
+        <Button
+            android:id="@+id/linearLabel"
+            android:text="Linear MPH"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:padding="@dimen/margin_tiny"
+            android:layout_marginTop="@dimen/margin_small" />
 
-    <Button
-        android:id="@+id/rpmLabel"
-        android:text="RPM"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_row="3"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp" />
+        <EditText
+            android:id="@+id/linearText"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:inputType="numberDecimal"
+            android:padding="@dimen/margin_tiny"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_column="1"
+            android:layout_row="3" />
 
-    <EditText
-        android:id="@+id/rpmText"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:inputType="number"
-        android:padding="4dp"
-        android:layout_column="1"
-        android:layout_row="3" />
-
+    </LinearLayout>
 </GridLayout>
